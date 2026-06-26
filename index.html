@@ -545,13 +545,21 @@ L'habitude est une grande sourdine.
   <div class="nl-inner fi">
     <h2>Sois le premier informé</h2>
     <p>Nouvelles collections, drops exclusifs, offres réservées aux abonnés.</p>
-    <form class="nl-form" action="https://formspree.io/f/mko1rgyw" method="POST">
-      <input type="email" name="email" placeholder="ton@email.com" required/>
-      <button type="submit" class="btn-primary" style="padding:12px 24px;border-radius:50px;font-size:.88rem">S'abonner</button>
-    </form>
-    <p class="nl-fine">Pas de spam. Désabonnement en 1 clic.</p>
-  </div>
-</section>
+    <form
+  action="https://formspree.io/f/mkolrgyw"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
 
 <!-- ══════ FOOTER ══════ -->
 <footer>
