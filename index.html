@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>WALLPAPERZ — Wallpapers d'Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   WALLPAPERZ — Tout-en-un
+   Noir #0A0A0F · Blanc cassé #F0EDE8
+   Violet #8B5CF6 · Ambre #F59E0B
+   ═══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0A0A0F;--black2:#13131A;--black3:#1C1C28;
+  --white:#F0EDE8;--white2:#B8B4AE;
+  --purple:#8B5CF6;--purple-light:#A78BFA;--purple-dark:#6D28D9;
+  --amber:#F59E0B;--amber-light:#FCD34D;
+  --nav-h:72px;--r:16px;--r-sm:8px
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--purple-dark);border-radius:3px}
+
+/* ─── NAV ─── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(10,10,15,.7);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(139,92,246,.15);
+  transition:background .3s,border-color .3s
+}
+#nav.scrolled{background:rgba(10,10,15,.96);border-bottom-color:rgba(139,92,246,.3)}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;
+  letter-spacing:.2em;text-decoration:none;
+  background:linear-gradient(90deg,var(--white),var(--purple-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
+.nav-links{display:flex;gap:36px}
+.nav-links a{color:var(--white2);text-decoration:none;font-size:.875rem;font-weight:400;letter-spacing:.05em;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+
+/* buttons */
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--white);padding:8px 18px;border-radius:50px;font-size:.875rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-ghost:hover{border-color:var(--purple);color:var(--purple-light)}
+.btn-primary{background:var(--purple);border:none;color:#fff;padding:9px 20px;border-radius:50px;font-size:.875rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:var(--purple-dark);transform:translateY(-1px)}
+
+.cart-btn{position:relative;cursor:pointer;padding:8px;color:var(--white2);background:none;border:none;transition:color .2s}
+.cart-btn:hover{color:var(--purple-light)}
+.cart-badge{position:absolute;top:2px;right:2px;background:var(--amber);color:#000;width:18px;height:18px;border-radius:50%;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;display:none}
+
+.hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+
+/* mobile menu */
+.mobile-nav{display:none;position:fixed;top:var(--nav-h);inset-x:0;background:rgba(10,10,15,.98);backdrop-filter:blur(20px);flex-direction:column;padding:20px;gap:4px;z-index:99;border-bottom:1px solid rgba(139,92,246,.2)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--white2);text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:1rem}
+.mobile-nav .mob-btns{display:flex;gap:10px;padding-top:12px}
+.mob-btns .btn-ghost,.mob-btns .btn-primary{flex:1}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:var(--nav-h) 48px 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;animation:drift 9s ease-in-out infinite}
+.orb1{width:560px;height:560px;background:radial-gradient(circle,var(--purple),transparent 70%);top:-120px;right:-80px}
+.orb2{width:380px;height:380px;background:radial-gradient(circle,var(--amber),transparent 70%);bottom:-60px;left:-60px;opacity:.2;animation-delay:3.5s}
+.orb3{width:280px;height:280px;background:radial-gradient(circle,#EC4899,transparent 70%);top:45%;left:38%;opacity:.13;animation-delay:6s}
+@keyframes drift{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(139,92,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.04) 1px,transparent 1px);background-size:56px 56px}
+
+.hero-content{position:relative;z-index:1;max-width:680px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);margin-bottom:24px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--purple-light)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,7.5vw,6rem);font-weight:700;line-height:1.04;margin-bottom:26px;color:var(--white)}
+.hero-title em{font-style:italic;background:linear-gradient(135deg,var(--purple-light),var(--amber-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.05rem;color:var(--white2);max-width:460px;margin-bottom:40px;font-weight:300}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.btn-hero{display:inline-block;background:var(--purple);color:#fff;text-decoration:none;padding:14px 32px;border-radius:50px;font-size:.92rem;font-weight:500;transition:all .25s}
+.btn-hero:hover{background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(139,92,246,.4)}
+.btn-hero-outline{display:inline-block;border:1px solid rgba(255,255,255,.25);color:var(--white);text-decoration:none;padding:14px 32px;border-radius:50px;font-size:.92rem;font-weight:300;transition:all .25s}
+.btn-hero-outline:hover{border-color:var(--white)}
+.hero-stats{display:flex;align-items:center;gap:28px}
+.stat{display:flex;flex-direction:column}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700}
+.stat-l{font-size:.75rem;color:var(--white2);text-transform:uppercase;letter-spacing:.1em}
+.stat-div{width:1px;height:36px;background:rgba(255,255,255,.12)}
+.scroll-hint{position:absolute;bottom:36px;right:48px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--white2);writing-mode:vertical-rl}
+.scroll-line{width:1px;height:52px;background:linear-gradient(var(--purple),transparent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{overflow:hidden;border-top:1px solid rgba(139,92,246,.18);border-bottom:1px solid rgba(139,92,246,.18);background:var(--black2);padding:13px 0}
+.marquee-track{display:flex;gap:28px;align-items:center;white-space:nowrap;animation:scroll-left 28s linear infinite;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white2)}
+.marquee-track .dot{color:var(--purple)}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SHARED SECTION STYLES ─── */
+.sec{padding:100px 48px}
+.sec-alt{background:var(--black2)}
+.sec-head{text-align:center;margin-bottom:60px}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);margin-bottom:14px}
+.sec-eyebrow::before,.sec-eyebrow::after{content:'✦';font-size:.55rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--white);margin-bottom:14px}
+.sec-title em{font-style:italic;color:var(--purple-light)}
+.sec-sub{color:var(--white2);max-width:460px;margin:0 auto;font-size:.95rem}
+
+/* ─── GALLERY ─── */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:44px}
+.f-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--white2);padding:8px 20px;border-radius:50px;font-size:.8rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;letter-spacing:.05em}
+.f-btn:hover{border-color:var(--purple);color:var(--purple-light)}
+.f-btn.active{background:var(--purple);border-color:var(--purple);color:#fff}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;margin-bottom:44px}
+.g-card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--black3);border:1px solid rgba(255,255,255,.06);transition:transform .3s,box-shadow .3s;aspect-ratio:4/3}
+.g-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.55),0 0 0 1px rgba(139,92,246,.3)}
+.g-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.g-card:hover img{transform:scale(1.06)}
+.g-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;transition:transform .5s}
+.g-card:hover .g-placeholder{transform:scale(1.06)}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.3) 50%,transparent 100%);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.g-card:hover .g-overlay{opacity:1}
+.g-tag{font-size:.68rem;color:var(--purple-light);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
+.g-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:12px}
+.g-actions{display:flex;gap:8px}
+.g-preview,.g-buy{border-radius:var(--r-sm);font-size:.76rem;cursor:pointer;padding:8px 12px;font-family:'Inter',sans-serif;transition:all .2s}
+.g-preview{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(4px)}
+.g-preview:hover{background:rgba(255,255,255,.2)}
+.g-buy{background:var(--purple);border:none;color:#fff;font-weight:500;padding:8px 14px;white-space:nowrap}
+.g-buy:hover{background:var(--purple-dark)}
+.g-price{position:absolute;top:12px;right:12px;background:rgba(10,10,15,.8);border:1px solid rgba(139,92,246,.4);color:var(--purple-light);padding:3px 10px;border-radius:50px;font-size:.76rem;font-weight:600;backdrop-filter:blur(8px)}
+
+.load-more{text-align:center}
+.btn-outline-lg{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--white);padding:13px 40px;border-radius:50px;font-size:.88rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-outline-lg:hover{border-color:var(--purple);color:var(--purple-light)}
+
+/* ─── UPLOAD SECTION ─── */
+.upload-sec{background:var(--black2)}
+.upload-inner{max-width:900px;margin:0 auto}
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.upload-zone{border:2px dashed rgba(139,92,246,.4);border-radius:var(--r);padding:48px 24px;text-align:center;background:rgba(139,92,246,.04);transition:all .3s;cursor:pointer}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--purple);background:rgba(139,92,246,.1)}
+.upload-zone input{display:none}
+.upload-icon{font-size:3rem;margin-bottom:16px}
+.upload-zone h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:8px;color:var(--white)}
+.upload-zone p{font-size:.85rem;color:var(--white2);margin-bottom:20px}
+.btn-upload{display:inline-block;background:var(--purple);border:none;color:#fff;padding:10px 24px;border-radius:50px;font-size:.85rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-upload:hover{background:var(--purple-dark)}
+
+.upload-form{display:flex;flex-direction:column;gap:16px}
+.upload-form h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:4px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.75rem;font-weight:500;color:var(--white2);text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select,.field textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--white);padding:11px 14px;border-radius:var(--r-sm);font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--purple)}
+.field textarea{resize:vertical;min-height:80px}
+.field select option{background:var(--black2);color:var(--white)}
+.upload-preview{border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.08);min-height:160px;background:var(--black3);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--white2)}
+.upload-preview img{width:100%;height:100%;object-fit:cover;max-height:260px}
+.btn-add-wall{background:var(--purple);border:none;color:#fff;padding:12px;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;width:100%}
+.btn-add-wall:hover{background:var(--purple-dark)}
+
+/* ─── COLLECTIONS ─── */
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.col-card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.06);transition:transform .3s;min-height:240px}
+.col-card:hover{transform:translateY(-4px)}
+.col-large{grid-column:span 1;grid-row:span 2;min-height:500px}
+.col-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s}
+.col-card:hover .col-bg{transform:scale(1.04)}
+.col-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 60%)}
+.col-body{position:absolute;bottom:0;left:0;right:0;padding:24px}
+.col-tag{font-size:.68rem;color:var(--purple-light);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+.col-body h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:4px}
+.col-large .col-body h3{font-size:2rem}
+.col-body p{font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:14px}
+.col-body button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 18px;border-radius:50px;font-size:.78rem;cursor:pointer;backdrop-filter:blur(8px);font-family:'Inter',sans-serif;transition:all .2s}
+.col-body button:hover{background:rgba(255,255,255,.2)}
+
+/* ─── WHY ─── */
+.why-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.why-text .sec-title{text-align:left}
+.why-text p{color:var(--white2);font-size:.98rem;margin-top:18px;max-width:420px}
+.features{display:flex;flex-direction:column;gap:20px}
+.feat{display:flex;gap:18px;align-items:flex-start;padding:18px;background:var(--black2);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);transition:border-color .2s}
+.feat:hover{border-color:rgba(139,92,246,.3)}
+.feat-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.1);border-radius:var(--r-sm);font-size:1.3rem;flex-shrink:0}
+.feat h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:3px}
+.feat p{font-size:.82rem;color:var(--white2)}
+
+/* ─── PRICING ─── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:980px;margin:0 auto;align-items:start}
+.price-card{background:var(--black3);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:34px 26px;position:relative;transition:border-color .2s}
+.price-card:hover{border-color:rgba(139,92,246,.3)}
+.price-card.featured{border-color:rgba(139,92,246,.5);background:linear-gradient(135deg,rgba(139,92,246,.09),var(--black3));transform:scale(1.03)}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:.72rem;font-weight:600;padding:4px 16px;border-radius:50px;white-space:nowrap}
+.price-name{font-size:.8rem;color:var(--purple-light);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.price-amount{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:3px}
+.price-mo{font-size:.9rem;font-family:'Inter',sans-serif;color:var(--white2)}
+.price-per{font-size:.78rem;color:var(--white2);margin-bottom:24px}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.price-feats li{font-size:.84rem;color:var(--white2)}
+.btn-price-outline{width:100%;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--white);padding:11px;border-radius:var(--r-sm);font-size:.86rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-price-outline:hover{border-color:var(--purple);color:var(--purple-light)}
+.btn-price-fill{width:100%;background:var(--purple);border:none;color:#fff;padding:11px;border-radius:var(--r-sm);font-size:.86rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-price-fill:hover{background:var(--purple-dark)}
+
+
+/* ─── NEWSLETTER ─── */
+.nl-inner{max-width:520px;margin:0 auto;text-align:center}
+.nl-inner h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--white);margin-bottom:10px}
+.nl-inner>p{color:var(--white2);margin-bottom:28px}
+.nl-form{display:flex;gap:12px}
+.nl-form input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:12px 18px;border-radius:50px;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.nl-form input:focus{border-color:var(--purple)}
+.nl-form input::placeholder{color:rgba(255,255,255,.35)}
+.nl-fine{font-size:.74rem;color:rgba(255,255,255,.3);margin-top:12px}
+
+/* ─── FOOTER ─── */
+footer{background:var(--black2);padding:56px 48px 28px}
+.foot-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:56px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.06)}
+.foot-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;background:linear-gradient(90deg,var(--white),var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.foot-brand p{font-size:.84rem;color:var(--white2);line-height:1.7}
+.foot-links{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.foot-col h5{font-size:.72rem;text-transform:uppercase;letter-spacing:.15em;color:var(--white);margin-bottom:14px}
+.foot-col a{display:block;font-size:.82rem;color:var(--white2);text-decoration:none;margin-bottom:9px;transition:color .2s}
+.foot-col a:hover{color:var(--purple-light)}
+.foot-bottom{max-width:1080px;margin:24px auto 0;display:flex;justify-content:space-between;font-size:.74rem;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+
+/* ─── MODAL ─── */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--black2);border:1px solid rgba(139,92,246,.22);border-radius:20px;padding:38px;width:100%;max-width:430px;position:relative;animation:pop .28s ease}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(8px)}to{opacity:1;transform:none}}
+.modal-x{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.07);border:none;color:var(--white2);width:30px;height:30px;border-radius:50%;font-size:.85rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:rgba(255,255,255,.15);color:var(--white)}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.modal .m-sub{font-size:.85rem;color:var(--white2);margin-bottom:26px}
+.m-form{display:flex;flex-direction:column;gap:13px}
+.m-field{display:flex;flex-direction:column;gap:5px}
+.m-field label{font-size:.75rem;font-weight:500;color:var(--white2);text-transform:uppercase;letter-spacing:.05em}
+.m-field input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--white);padding:11px 14px;border-radius:var(--r-sm);font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.m-field input:focus{border-color:var(--purple)}
+.m-submit{width:100%;background:var(--purple);border:none;color:#fff;padding:12px;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:4px;transition:all .2s}
+.m-submit:hover{background:var(--purple-dark)}
+.m-switch{text-align:center;font-size:.82rem;color:var(--white2);margin-top:14px}
+.m-switch a{color:var(--purple-light);cursor:pointer;text-decoration:underline}
+.m-divider{display:flex;align-items:center;gap:10px;font-size:.74rem;color:rgba(255,255,255,.28);margin:2px 0}
+.m-divider::before,.m-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+
+/* ─── CART SIDEBAR ─── */
+.cart-screen{position:fixed;inset:0;z-index:149;background:rgba(0,0,0,.52);display:none}
+.cart-screen.open{display:block}
+.cart-side{position:fixed;top:0;right:-400px;bottom:0;z-index:150;width:370px;background:var(--black2);border-left:1px solid rgba(139,92,246,.18);display:flex;flex-direction:column;transition:right .3s ease}
+.cart-side.open{right:0}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid rgba(255,255,255,.07)}
+.cart-head h3{font-size:.95rem;font-weight:600}
+.cart-head button{background:none;border:none;color:var(--white2);font-size:1.1rem;cursor:pointer}
+.cart-items{flex:1;overflow-y:auto;padding:18px}
+.cart-empty-state{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--white2);text-align:center}
+.cart-empty-state span{font-size:2.8rem}
+.cart-empty-state p{font-size:.88rem}
+.c-item{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.c-thumb{width:52px;height:52px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;overflow:hidden}
+.c-thumb img{width:100%;height:100%;object-fit:cover}
+.c-name{font-size:.88rem;font-weight:500;color:var(--white)}
+.c-price{font-size:.8rem;color:var(--purple-light);margin-top:2px}
+.c-rm{background:none;border:none;color:rgba(255,255,255,.28);cursor:pointer;font-size:.95rem;transition:color .2s;margin-left:auto}
+.c-rm:hover{color:#ef4444}
+.cart-foot{padding:18px;border-top:1px solid rgba(255,255,255,.07)}
+.cart-total{display:flex;justify-content:space-between;font-size:.9rem;color:var(--white2);margin-bottom:14px}
+.cart-total strong{color:var(--white);font-size:1.05rem}
+.btn-checkout{width:100%;background:var(--purple);border:none;color:#fff;padding:12px;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-checkout:hover{background:var(--purple-dark)}
+
+/* ─── LIGHTBOX ─── */
+.lbox{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:20px}
+.lbox.open{display:flex}
+.lbox-inner{max-width:860px;width:100%;display:grid;grid-template-columns:1fr 280px;gap:24px;position:relative}
+.lbox-close{position:fixed;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:var(--white);width:38px;height:38px;border-radius:50%;font-size:.9rem;cursor:pointer;transition:all .2s;z-index:301;display:flex;align-items:center;justify-content:center}
+.lbox-close:hover{background:rgba(255,255,255,.2)}
+.lbox-img{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--black3);display:flex;align-items:center;justify-content:center}
+.lbox-img img{width:100%;height:100%;object-fit:cover}
+.lbox-info{display:flex;flex-direction:column;gap:14px;padding:4px 0}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:22px;right:22px;z-index:500;background:var(--black2);border:1px solid rgba(139,92,246,.4);color:var(--white);padding:11px 18px;border-radius:var(--r-sm);font-size:.85rem;transform:translateY(16px);opacity:0;transition:all .3s;pointer-events:none;max-width:280px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:920px){
+  #nav{padding:0 20px}
+  .nav-links,.nav-actions{display:none}
+  .hamburger{display:block}
+  .hero{padding:var(--nav-h) 20px 60px}
+  .scroll-hint{display:none}
+  .sec{padding:64px 20px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .col-grid{grid-template-columns:1fr 1fr}
+  .col-large{grid-column:span 2;min-height:280px}
+  .why-inner,.about-inner{grid-template-columns:1fr;gap:40px}
+  .price-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
+  .price-card.featured{transform:none}
+  .foot-inner{grid-template-columns:1fr;gap:32px}
+  .foot-links{grid-template-columns:1fr 1fr}
+  .nl-form{flex-direction:column}
+  .lbox-inner{grid-template-columns:1fr}
+  .lbox-info{padding:0}
+  .upload-grid{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  .gallery-grid{grid-template-columns:1fr}
+  .col-grid{grid-template-columns:1fr}
+  .col-large{grid-column:span 1}
+  .cart-side{width:100%}
+  .hero-stats{gap:18px}
+  .foot-links{grid-template-columns:1fr}
+}
+
+/* ─── FADE IN ANIMATION ─── */
+.fi{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.fi.vis{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav id="nav">
+<a class="nav-logo">WALLPAPERZ</a>
+  <div class="nav-links">
+    <a href="#home">Accueil</a>
+    <a href="#gallery">Galerie</a>
+    <a href="#upload">Ajouter</a>
+      </div>
+  <div class="nav-actions" id="navActions">
+    <button class="btn-ghost" onclick="openModal('login')">Connexion</button>
+    <button class="btn-primary" onclick="openModal('signup')">S'inscrire</button>
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="closeMenu()">Accueil</a>
+  <a href="#gallery" onclick="closeMenu()">Galerie</a>
+  <a href="#upload" onclick="closeMenu()">Ajouter un wallpaper</a>
+   <div class="mob-btns">
+    <button class="btn-ghost" onclick="closeMenu();openModal('login')">Connexion</button>
+    <button class="btn-primary" onclick="closeMenu();openModal('signup')">S'inscrire</button>
+  </div>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grid-lines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">Galerie Numérique Exclusive</div>
+<h1 class="hero-title">
+L'habitude est une grande sourdine.
+</h1>    <p class="hero-sub">Des wallpapers uniques, pensés pour ceux qui refusent l'ordinaire. Chaque image est une œuvre à part entière.</p>
+    <div class="hero-cta">
+      <a href="#gallery" class="btn-hero">Explorer la galerie</a>
+      <a href="#collections" class="btn-hero-outline">Voir les collections</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n" id="heroCount">0</span><span class="stat-l">Wallpapers</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">12</span><span class="stat-l">Collections</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">4K</span><span class="stat-l">Résolution</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════ MARQUEE ══════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Wallpapers 4K</span><span class="dot">·</span>
+    <span>Téléchargement Instantané</span><span class="dot">·</span>
+    <span>Licence Personnelle</span><span class="dot">·</span>
+    <span>Desktop & Mobile</span><span class="dot">·</span>
+    <span>Nouvelles Créations Chaque Semaine</span><span class="dot">·</span>
+    <span>Wallpapers 4K</span><span class="dot">·</span>
+    <span>Téléchargement Instantané</span><span class="dot">·</span>
+    <span>Licence Personnelle</span><span class="dot">·</span>
+    <span>Desktop & Mobile</span><span class="dot">·</span>
+    <span>Nouvelles Créations Chaque Semaine</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ══════ GALLERY ══════ -->
+<section id="gallery" class="sec">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Galerie</div>
+    <h2 class="sec-title">Œuvres en vedette</h2>
+    <p class="sec-sub">Chaque wallpaper est conçu pour transformer ton écran en espace d'expression.</p>
+  </div>
+  <div class="filter-bar" id="filterBar">
+    <button class="f-btn active" data-filter="all">Tout</button>
+</div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="load-more">
+    <button class="btn-outline-lg" id="loadMoreBtn" onclick="loadMore()">Charger plus</button>
+  </div>
+</section>
+
+<!-- ══════ UPLOAD / AJOUTER ══════ -->
+<section id="upload" class="sec sec-alt">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Créateur</div>
+    <h2 class="sec-title">Ajoute tes wallpapers</h2>
+    <p class="sec-sub">Importe directement tes créations depuis ton ordinateur et mets-les en vente en quelques secondes.</p>
+  </div>
+  <div class="upload-inner">
+    <div class="upload-grid">
+      <div>
+        <div class="upload-zone fi" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDrag(event,true)" ondragleave="onDrag(event,false)" ondrop="onDrop(event)">
+          <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)"/>
+          <div class="upload-icon">📁</div>
+          <h3>Glisse tes images ici</h3>
+          <p>PNG, JPG, WebP — jusqu'à 20 Mo par fichier</p>
+          <button class="btn-upload" type="button">Parcourir les fichiers</button>
+        </div>
+        <div id="uploadPreviewArea" style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
+      </div>
+      <div class="upload-form fi">
+        <h3>Détails du wallpaper</h3>
+        <div class="field">
+          <label>Titre</label>
+          <input type="text" id="upTitle" placeholder="Ex : Nébuleuse Violette"/>
+        </div>
+        <div class="field">
+          <label>Catégorie</label>
+          <select id="upTag">
+            <option value="abstract">Abstrait</option>
+            <option value="nature">Nature</option>
+            <option value="minimal">Minimaliste</option>
+            <option value="dark">Dark</option>
+            <option value="cosmic">Cosmique</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Prix (€)</label>
+          <input type="number" id="upPrice" value="10" min="0" step="0.5"/>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="upDesc" placeholder="Décris ton wallpaper en quelques mots…"></textarea>
+        </div>
+        <div id="upPreviewBox" class="upload-preview">Aperçu de l'image</div>
+        <button class="btn-add-wall" onclick="addWallpaper()">✦ Ajouter à la galerie</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ WHY ══════ -->
+<section class="sec sec-alt">
+  <div class="why-inner">
+    <div class="why-text fi">
+      <div class="sec-eyebrow" style="justify-content:flex-start">Pourquoi WALLPAPERZ</div>
+      <h2 class="sec-title">Plus qu'un<br/>simple wallpaper</h2>
+      <p>Chaque création est pensée dans les moindres détails — composition, palette, résolution — pour offrir une expérience visuelle hors du commun sur n'importe quel écran.</p>
+    </div>
+    <div class="features">
+      <div class="feat fi"><div class="feat-icon">⚡</div><div><h4>Téléchargement Instantané</h4><p>Accès immédiat après paiement, sans attente.</p></div></div>
+      <div class="feat fi"><div class="feat-icon">🎨</div><div><h4>Qualité 4K & 8K</h4><p>Des fichiers haute résolution pour tous tes écrans.</p></div></div>
+      <div class="feat fi"><div class="feat-icon">🔒</div><div><h4>Licence Personnelle</h4><p>Usage privé illimité sur tous tes appareils.</p></div></div>
+      <div class="feat fi"><div class="feat-icon">♾️</div><div><h4>Mises à Jour Gratuites</h4><p>Nouveaux wallpapers chaque semaine pour les membres.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PRICING ══════ -->
+<section class="sec">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Tarifs</div>
+    <h2 class="sec-title">Simple et transparent</h2>
+  </div>
+  <div class="price-grid">
+    <div class="price-card fi">
+      <div class="price-name">À l'unité</div>
+      <div class="price-amount">10€</div>
+      <div class="price-per">par wallpaper</div>
+      <ul class="price-feats">
+        <li>✓ Fichier haute résolution</li>
+        <li>✓ Téléchargement instantané</li>
+        <li>✓ Licence personnelle</li>
+        <li>✓ Formats PNG / JPG</li>
+      </ul>
+      <button class="btn-price-outline" onclick="openModal('signup')">Commencer</button>
+    </div>
+    <div class="price-card featured fi">
+      <div class="price-badge">Populaire</div>
+      <div class="price-name">Pack Mensuel</div>
+      <div class="price-amount">19€<span class="price-mo">/mois</span></div>
+      <div class="price-per">accès illimité</div>
+      <ul class="price-feats">
+        <li>✓ Toute la galerie débloquée</li>
+        <li>✓ Avant-premières exclusives</li>
+        <li>✓ Formats Desktop & Mobile</li>
+        <li>✓ Support prioritaire</li>
+        <li>✓ Collections thématiques</li>
+      </ul>
+      <button class="btn-price-fill" onclick="openModal('signup')">Essayer 7 jours gratuits</button>
+    </div>
+    <div class="price-card fi">
+      <div class="price-name">Pack Annuel</div>
+      <div class="price-amount">149€<span class="price-mo">/an</span></div>
+      <div class="price-per">économise 30%</div>
+      <ul class="price-feats">
+        <li>✓ Tout du Pack Mensuel</li>
+        <li>✓ Wallpapers personnalisés</li>
+        <li>✓ Accès aux archives</li>
+        <li>✓ Licence commerciale incluse</li>
+      </ul>
+      <button class="btn-price-outline" onclick="openModal('signup')">Commencer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ NEWSLETTER ══════ -->
+<section class="sec" style="background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(245,158,11,.06),rgba(139,92,246,.1));border-top:1px solid rgba(139,92,246,.18);border-bottom:1px solid rgba(139,92,246,.18)">
+  <div class="nl-inner fi">
+    <h2>Sois le premier informé</h2>
+    <p>Nouvelles collections, drops exclusifs, offres réservées aux abonnés.</p>
+    <form class="nl-form" onsubmit="doNewsletter(event)">
+      <input type="email" placeholder="ton@email.com" required/>
+      <button type="submit" class="btn-primary" style="padding:12px 24px;border-radius:50px;font-size:.88rem">S'abonner</button>
+    </form>
+    <p class="nl-fine">Pas de spam. Désabonnement en 1 clic.</p>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="foot-inner">
+
+    <div class="foot-brand">
+      <div class="foot-logo">WALLPAPERZ</div>
+      <p>L'habitude est une grande sourdine.</p>
+    </div>
+
+    <div class="foot-links">
+
+      <div class="foot-col">
+        <h5>Navigation</h5>
+        <a href="#home">Accueil</a>
+        <a href="#gallery">Galerie</a>
+      </div>
+
+      <div class="foot-col">
+        <h5>Informations</h5>
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Conditions générales</a>
+      </div>
+
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="mailto:rabehantamathis@gmail.com">📧 Contact</a>
+        <a href="https://instagram.com/mathis_rbht" target="_blank" rel="noopener noreferrer">
+          📸 @mathis_rbht
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2026 WALLPAPERZ. Tous droits réservés.</span>
+    <span>Créé par Mathis Rabeh</span>
+  </div>
+</footer>
+
+<!-- ══════ MODAL ══════ -->
+<div class="modal-bg" id="modalBg" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ══════ CART ══════ -->
+<div class="cart-screen" id="cartScreen" onclick="toggleCart()"></div>
+<div class="cart-side" id="cartSide">
+  <div class="cart-head">
+    <h3>Mon Panier</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total">Total <strong id="cartTotal">0€</strong></div>
+    <button class="btn-checkout">Procéder au paiement</button>
+  </div>
+</div>
+
+<!-- ══════ LIGHTBOX ══════ -->
+<div class="lbox" id="lbox" onclick="closeLbox()">
+  <button class="lbox-close" onclick="closeLbox()">✕</button>
+  <div class="lbox-inner" onclick="event.stopPropagation()">
+    <div class="lbox-img" id="lboxImg"></div>
+    <div class="lbox-info" id="lboxInfo"></div>
+  </div>
+</div>
+
+<!-- ══════ TOAST ══════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════
+   WALLPAPERZ — JavaScript complet
+   ══════════════════════════════════════ */
+
+// ─── DATA ───────────────────────────────────────────────────────
+let WALLS = [
+{
+    id:1,
+    title:"Kirk Contre-Attaque",
+    tag:"all",
+    price:10,
+    desc:"Wallpaper exclusif.",
+    img:"images/kirk-contre-attaque.jpg"
+},
+{
+    id:2,
+    title:"APOCALYPSE",
+    tag:"all",
+    price:10,
+    desc:"Wallpaper exclusif.",
+    img:"images/apocalypse.jpg"
+},
+{
+    id:3,
+    title:"Samuel Beckett, Dramaturge",
+    tag:"all",
+    price:10,
+    desc:"Wallpaper exclusif.",
+    img:"images/samuel-beckett.jpg"
+},
+{
+    id:4,
+    title:"Le duel Historique",
+    tag:"all",
+    price:10,
+    desc:"Wallpaper exclusif.",
+    img:"images/duel-historique.jpg"
+}
+];
+
+let nextId = 5;
+// ─── STATE ──────────────────────────────────────────────────────
+let cart = JSON.parse(localStorage.getItem('lm_cart')||'[]');
+let user = JSON.parse(localStorage.getItem('lm_user')||'null');
+let filter = 'all';
+let visible = 8;
+let pendingFile = null; // uploaded image data URL
+
+// ─── BOOT ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', ()=>{
+  renderGallery();
+  updateCart();
+  updateHeroCount();
+  updateCollectionCounts();
+  initScroll();
+  initFadeIn();
+  initFilters();
+  if(user) renderUserNav();
+});
+
+// ─── SCROLL ─────────────────────────────────────────────────────
+function initScroll(){
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>40);
+  },{passive:true});
+}
+
+// ─── FADE IN ────────────────────────────────────────────────────
+function initFadeIn(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('vis'), i*70);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+}
+
+function reFade(){
+  document.querySelectorAll('.fi:not(.vis)').forEach((el,i)=>{
+    const obs2 = new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*60);obs2.unobserve(e.target);}});
+    },{threshold:0.1});
+    obs2.observe(el);
+  });
+}
+
+// ─── GALLERY ────────────────────────────────────────────────────
+function renderGallery(){
+  const grid = document.getElementById('galleryGrid');
+  const pool = filter==='all' ? WALLS : WALLS.filter(w=>w.tag===filter);
+  const show = pool.slice(0,visible);
+  document.getElementById('loadMoreBtn').style.display = pool.length>visible ? 'inline-block' : 'none';
+
+  grid.innerHTML = show.map(w=>`
+    <div class="g-card fi" data-id="${w.id}">
+      ${w.img
+        ? `<img src="${w.img}" alt="${w.title}" loading="lazy"/>`
+        : `<div class="g-placeholder" style="background:${w.bg}">${w.emoji}</div>`
+      }
+      <div class="g-price">${w.price}€</div>
+      <div class="g-overlay">
+        <div class="g-tag">${cap(w.tag)}</div>
+        <div class="g-name">${w.title}</div>
+        <div class="g-actions">
+          <button class="g-preview" onclick="openLbox(${w.id})">Aperçu</button>
+          <button class="g-buy" onclick="addCart(${w.id},event)">+ Panier</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  setTimeout(()=>{
+    grid.querySelectorAll('.fi').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*55));
+  },30);
+}
+
+function initFilters(){
+  document.getElementById('filterBar').addEventListener('click',e=>{
+    const btn = e.target.closest('.f-btn');
+    if(!btn) return;
+    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.dataset.filter;
+    visible = 8;
+    renderGallery();
+    document.getElementById('gallery').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+function filterByTag(tag){
+  filter = tag;
+  visible = 8;
+  document.querySelectorAll('.f-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.filter===tag);
+  });
+  renderGallery();
+  document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+}
+
+function loadMore(){
+  visible += 4;
+  renderGallery();
+}
+
+function updateHeroCount(){
+  const el = document.getElementById('heroCount');
+  const target = 4;
+  let cur = 0;
+  const t = setInterval(()=>{
+    cur = Math.min(cur+1, target);
+    el.textContent = cur;
+    if(cur>=target) clearInterval(t);
+  }, 40);
+}
+
+function updateCollectionCounts(){
+  ['cosmic','dark','nature','abstract','minimal'].forEach(tag=>{
+    const el = document.getElementById('ct-'+tag);
+    if(el) el.textContent = WALLS.filter(w=>w.tag===tag).length + ' wallpapers';
+  });
+}
+
+// ─── UPLOAD ─────────────────────────────────────────────────────
+function onDrag(e,entering){
+  e.preventDefault();
+  document.getElementById('dropZone').classList.toggle('drag',entering);
+}
+
+function onDrop(e){
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag');
+  handleFiles(e.dataTransfer.files);
+}
+
+function handleFiles(files){
+  if(!files||!files.length) return;
+  const file = files[0];
+  if(!file.type.startsWith('image/')) return toast('⚠️ Fichier non supporté. Utilise PNG, JPG ou WebP.');
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    pendingFile = ev.target.result;
+    const box = document.getElementById('upPreviewBox');
+    box.innerHTML = `<img src="${pendingFile}" style="width:100%;max-height:260px;object-fit:cover;border-radius:var(--r-sm)"/>`;
+    // pre-fill title from filename
+    const name = file.name.replace(/\.[^/.]+$/,'').replace(/[-_]/g,' ');
+    if(!document.getElementById('upTitle').value) document.getElementById('upTitle').value = cap(name);
+  };
+  reader.readAsDataURL(file);
+
+  // thumbnail queue for multi-file
+  const area = document.getElementById('uploadPreviewArea');
+  Array.from(files).forEach(f=>{
+    const r2 = new FileReader();
+    r2.onload = e2=>{
+      const thumb = document.createElement('div');
+      thumb.style.cssText='border-radius:8px;overflow:hidden;aspect-ratio:1;cursor:pointer;border:1px solid rgba(255,255,255,.1)';
+      thumb.innerHTML=`<img src="${e2.target.result}" style="width:100%;height:100%;object-fit:cover" onclick="selectThumb('${e2.target.result}')"/>`;
+      area.appendChild(thumb);
+    };
+    r2.readAsDataURL(f);
+  });
+}
+
+function selectThumb(src){
+  pendingFile = src;
+  document.getElementById('upPreviewBox').innerHTML=`<img src="${src}" style="width:100%;max-height:260px;object-fit:cover;border-radius:var(--r-sm)"/>`;
+}
+
+function addWallpaper(){
+  const title = document.getElementById('upTitle').value.trim();
+  const tag   = document.getElementById('upTag').value;
+  const price = parseFloat(document.getElementById('upPrice').value)||10;
+  const desc  = document.getElementById('upDesc').value.trim();
+
+  if(!title){ toast('⚠️ Donne un titre à ton wallpaper.'); return; }
+  if(!pendingFile){ toast('⚠️ Sélectionne une image d\'abord.'); return; }
+
+  const w = {id:nextId++, title, tag, price, emoji:'🖼️', bg:'linear-gradient(135deg,#1c1c28,#2d2d40)', desc:desc||'Wallpaper exclusif.', img:pendingFile};
+  WALLS.unshift(w);
+
+  // reset form
+  document.getElementById('upTitle').value='';
+  document.getElementById('upDesc').value='';
+  document.getElementById('upPrice').value='10';
+  document.getElementById('upPreviewBox').innerHTML='Aperçu de l\'image';
+  document.getElementById('uploadPreviewArea').innerHTML='';
+  pendingFile = null;
+
+  // refresh
+  filter='all'; visible=8;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));
+  renderGallery();
+  updateHeroCount();
+  updateCollectionCounts();
+
+  toast(`✓ "${title}" ajouté à la galerie !`);
+  setTimeout(()=>document.getElementById('gallery').scrollIntoView({behavior:'smooth'}),400);
+}
+
+// ─── LIGHTBOX ────────────────────────────────────────────────────
+function openLbox(id){
+  const w = WALLS.find(x=>x.id===id);
+  if(!w) return;
+  document.getElementById('lboxImg').innerHTML = w.img
+    ? `<img src="${w.img}" alt="${w.title}" style="width:100%;height:100%;object-fit:cover"/>`
+    : `<div style="width:100%;height:100%;background:${w.bg};display:flex;align-items:center;justify-content:center;font-size:7rem">${w.emoji}</div>`;
+  document.getElementById('lboxInfo').innerHTML=`
+    <div style="font-size:.72rem;color:var(--purple-light);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">${cap(w.tag)}</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:10px">${w.title}</div>
+    <p style="color:var(--white2);font-size:.88rem;margin-bottom:22px">${w.desc}</p>
+    <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--white);margin-bottom:22px">${w.price}€</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn-checkout" onclick="addCart(${w.id},event)">Ajouter au panier</button>
+      <button class="btn-price-outline" onclick="closeLbox()">Fermer</button>
+    </div>
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:5px">
+      <div style="font-size:.74rem;color:var(--white2)">✓ Fichier 4K haute résolution</div>
+      <div style="font-size:.74rem;color:var(--white2)">✓ Formats Desktop & Mobile</div>
+      <div style="font-size:.74rem;color:var(--white2)">✓ Téléchargement instantané</div>
+    </div>`;
+  document.getElementById('lbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLbox(){
+  document.getElementById('lbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ─── CART ─────────────────────────────────────────────────────
+function addCart(id,e){
+  if(e) e.stopPropagation();
+  const w = WALLS.find(x=>x.id===id);
+  if(!w) return;
+  if(cart.find(i=>i.id===id)){ toast(`"${w.title}" est déjà dans le panier.`); return; }
+  cart.push({id:w.id,title:w.title,price:w.price,emoji:w.emoji,img:w.img,bg:w.bg});
+  saveCart(); updateCart();
+  toast(`✓ "${w.title}" ajouté au panier !`);
+}
+
+function removeCart(id){
+  cart = cart.filter(i=>i.id!==id);
+  saveCart(); updateCart();
+}
+
+function saveCart(){
+  // store only lightweight data (no large base64 images in localStorage)
+  const lite = cart.map(({id,title,price,emoji,bg})=>({id,title,price,emoji,bg}));
+  try{ localStorage.setItem('lm_cart',JSON.stringify(lite)); }catch(e){}
+}
+
+function updateCart(){
+  const badge = document.getElementById('cartBadge');
+  const items = document.getElementById('cartItems');
+  const foot  = document.getElementById('cartFoot');
+  const total = document.getElementById('cartTotal');
+  badge.textContent = cart.length;
+  badge.style.display = cart.length ? 'flex' : 'none';
+  if(!cart.length){
+    items.innerHTML=`<div class="cart-empty-state"><span>🛒</span><p>Ton panier est vide</p><button class="btn-ghost" onclick="toggleCart()">Explorer la galerie</button></div>`;
+    foot.style.display='none';
+  } else {
+    items.innerHTML = cart.map(it=>`
+      <div class="c-item">
+        <div class="c-thumb" style="background:${it.bg||'var(--black3)'}">${it.img?`<img src="${it.img}"/>`:`<span>${it.emoji}</span>`}</div>
+        <div><div class="c-name">${it.title}</div><div class="c-price">${it.price}€</div></div>
+        <button class="c-rm" onclick="removeCart(${it.id})">✕</button>
+      </div>`).join('');
+    total.textContent = cart.reduce((s,i)=>s+i.price,0).toFixed(2)+'€';
+    foot.style.display='block';
+  }
+}
+
+function toggleCart(){
+  const side = document.getElementById('cartSide');
+  const scr  = document.getElementById('cartScreen');
+  const open = side.classList.toggle('open');
+  scr.classList.toggle('open',open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+// ─── AUTH MODAL ───────────────────────────────────────────────
+function openModal(type){
+  const bg = document.getElementById('modalBg');
+  const body = document.getElementById('modalBody');
+  if(type==='signup'){
+    body.innerHTML=`
+      <h2>Rejoindre WALLPAPERZ</h2>
+      <p class="m-sub">Accède à des wallpapers exclusifs et bien plus.</p>
+      <form class="m-form" onsubmit="doSignup(event)">
+        <div class="m-field"><label>Prénom</label><input id="sFirst" type="text" placeholder="Jean" required/></div>
+        <div class="m-field"><label>Email</label><input id="sEmail" type="email" placeholder="ton@email.com" required/></div>
+        <div class="m-field"><label>Mot de passe</label><input id="sPass" type="password" placeholder="8 caractères minimum" minlength="8" required/></div>
+        <button type="submit" class="m-submit">Créer mon compte</button>
+      </form>
+      <div class="m-switch">Déjà membre ? <a onclick="openModal('login')">Se connecter</a></div>`;
+  } else {
+    body.innerHTML=`
+      <h2>Bon retour !</h2>
+      <p class="m-sub">Connecte-toi pour accéder à ta bibliothèque.</p>
+      <form class="m-form" onsubmit="doLogin(event)">
+        <div class="m-field"><label>Email</label><input id="lEmail" type="email" placeholder="ton@email.com" required/></div>
+        <div class="m-field"><label>Mot de passe</label><input id="lPass" type="password" placeholder="••••••••" required/></div>
+        <button type="submit" class="m-submit">Se connecter</button>
+      </form>
+      <div class="m-divider">ou</div>
+      <div class="m-switch">Pas encore membre ? <a onclick="openModal('signup')">S'inscrire gratuitement</a></div>`;
+  }
+  bg.classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>bg.querySelector('input')?.focus(),80);
+}
+
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function doSignup(e){
+  e.preventDefault();
+  const name = document.getElementById('sFirst').value;
+  const email = document.getElementById('sEmail').value;
+  user={name,email};
+  localStorage.setItem('lm_user',JSON.stringify(user));
+  closeModal(); renderUserNav();
+  toast(`🎉 Bienvenue ${name} ! Ton compte est créé.`);
+}
+
+function doLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('lEmail').value;
+  const name = cap(email.split('@')[0]);
+  user={name,email};
+  localStorage.setItem('lm_user',JSON.stringify(user));
+  closeModal(); renderUserNav();
+  toast(`✓ Connexion réussie ! Bonjour ${name}.`);
+}
+
+function renderUserNav(){
+  document.getElementById('navActions').innerHTML=`
+    <span style="font-size:.82rem;color:var(--white2);padding:0 6px">Bonjour, ${user.name} ✦</span>
+    <button class="btn-ghost" onclick="doLogout()">Déconnexion</button>
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-badge" id="cartBadge" style="${cart.length?'display:flex':'display:none'}">${cart.length}</span>
+    </button>`;
+}
+
+function doLogout(){
+  user=null; localStorage.removeItem('lm_user');
+  location.reload();
+}
+
+// ─── NEWSLETTER ───────────────────────────────────────────────
+function doNewsletter(e){
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  toast(`✓ ${input.value} abonné(e) !`);
+  input.value='';
+}
+
+// ─── MENU MOBILE ─────────────────────────────────────────────
+function toggleMenu(){ document.getElementById('mobileNav').classList.toggle('open'); }
+function closeMenu(){ document.getElementById('mobileNav').classList.remove('open'); }
+
+// ─── TOAST ───────────────────────────────────────────────────
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ─── UTILS ───────────────────────────────────────────────────
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+// ─── KEYBOARD ────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeLbox(); closeModal();
+    if(document.getElementById('cartSide').classList.contains('open')) toggleCart();
+  }
+});
+</script>
+</body>
+</html>
